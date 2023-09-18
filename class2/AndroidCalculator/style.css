@@ -1,0 +1,35 @@
+
+
+
+
+
+
+.utilities{
+    display: flex;
+    justify-content: space-between;
+}
+
+.calc{
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+.row{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+    text-align: center;
+    
+}
+
+.row-num{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    align-items: center;
+    text-align: center;
+    
+}
+
+.scientific-2{
+    display: none;
+}

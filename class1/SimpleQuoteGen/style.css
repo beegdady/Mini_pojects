@@ -1,0 +1,106 @@
+:root{
+    --bg-color : #E5E5E5;
+    --or-color : #E34234;
+    --wh-color :#fff;
+    --pr-color : #355E3B;
+    
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Cambria', 'Cochin', Georgia, Times, 'Times New Roman', serif;
+}
+
+.container{
+    margin: 0 3rem 0 5rem;
+}
+
+
+
+nav{
+    align-items: center;
+    background-color: var(--pr-color) ;
+    position: sticky;
+    cursor: pointer;
+}
+
+nav div{
+    display: flex;
+    justify-content: center;
+    padding: 1.2rem 0;
+    color: var(--wh-color);
+    align-items: center;
+}
+
+
+.sec-1{
+    background-color: #000;
+    height: 88vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sec-1-content{
+    background-color: #E5E5E5;
+    border-radius: 2rem;
+    margin: 0 10rem;
+    padding: 3rem 1.5rem 1rem 1.5rem;
+    width: 100%;
+}
+
+.sec-1-content h3{
+    font-weight: 600;
+    margin-bottom: 0.5rem ;
+    text-align: center;
+}
+
+.sec-1-body{
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.post{
+    padding: 0 1rem;
+}
+
+
+.author{
+    text-align: right;
+}
+
+
+.action{
+    border-top: 0.2rem solid rgb(28, 25, 12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+
+.cta{
+    color: var(--wh-color);
+    background: var(--pr-color);
+    padding: 0.6rem 1rem;
+    border-radius: 1rem;
+    font-weight: 600;
+}
+
+@media screen and (max-width : 767px){
+    .sec-1-content{
+        margin: 0 5rem;
+    }
+}
+
+@media screen and (max-width : 480px){
+    .sec-1-content{
+        margin: 0 2rem;
+    }
+}
