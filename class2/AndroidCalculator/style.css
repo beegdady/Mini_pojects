@@ -1,8 +1,13 @@
 
 
+button ,input{
+    border-radius: 100%;
+    padding: 1rem;
+}
 
-
-
+.display{
+    text-align: right;
+}
 
 .utilities{
     display: flex;
