@@ -19,6 +19,18 @@ for (i = 0; i < buttons.length; i++){
             currentValue = "";
             // dText.value = currentValue;
 
+        }else if (buttonValue == '/'){
+            currentValue += '÷';
+           
+        
+        }else if (buttonValue == 'x'){
+            currentValue += '*';
+
+            let checkmatch = dispVal.match(/(\d+(\.\d+)?)\s*\*\s*(\d+(\.\d+)?)/);
+            if (checkmatch){
+                let num1 = parseFloat(checkmatch[1]);
+                console.log(num1)
+            }        
         }else if(buttonValue == '%'){
             let number = Number(dispVal);
 
@@ -37,9 +49,7 @@ for (i = 0; i < buttons.length; i++){
                     currentValue += '('
                 }
             }
-        }
-        
-        else{
+        }else{
             currentValue += buttonValue;
             console.log(currentValue);
         }
@@ -54,25 +64,29 @@ function isNumeric(input) {
     return /^\d+$/.test(input);
 }
 
+function multiply(input){
+    let result = input;
+}
 
 
 
 
-const togSci = document.querySelector('.sci-more');
-const togSci1 = document.querySelector('.sci-more1');
 
-const scient = document.querySelector('.scientific-1');
-const scient1 = document.querySelector('.scientific-2');
+// const togSci = document.querySelector('.sci-more');
+// const togSci1 = document.querySelector('.sci-more1');
+
+// const scient = document.querySelector('.scientific-1');
+// const scient1 = document.querySelector('.scientific-2');
 
 
-togSci.addEventListener('click', ()=> {
-    scient.style.display = 'none';
-    scient1.style.display = 'block';
-});
+// togSci.addEventListener('click', ()=> {
+//     scient.style.display = 'none';
+//     scient1.style.display = 'block';
+// });
 
-togSci1.addEventListener('click', ()=> {
-    scient1.style.display = 'none';
-    scient.style.display = 'block';
-});
+// togSci1.addEventListener('click', ()=> {
+//     scient1.style.display = 'none';
+//     scient.style.display = 'block';
+// });
 
 
