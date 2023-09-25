@@ -26,11 +26,6 @@ for (i = 0; i < buttons.length; i++){
         }else if (buttonValue == 'x'){
             currentValue += '*';
 
-            let checkmatch = dispVal.match(/(\d+(\.\d+)?)\s*\*\s*(\d+(\.\d+)?)/);
-            if (checkmatch){
-                let num1 = parseFloat(checkmatch[1]);
-                console.log(num1)
-            }        
         }else if(buttonValue == '%'){
             let number = Number(dispVal);
 
@@ -49,6 +44,9 @@ for (i = 0; i < buttons.length; i++){
                     currentValue += '('
                 }
             }
+        }else if(buttonValue == '='){
+            let expression = dispVal;
+            dRes.value = calculateExpression(expression)
         }else{
             currentValue += buttonValue;
             console.log(currentValue);
@@ -68,25 +66,88 @@ function multiply(input){
     let result = input;
 }
 
+function calculateExpression(expression) {
+    const precedence = {
+        '^': 4,
+        '*': 3,
+        '/': 3,
+        '+': 2,
+        '-': 2,
+    };
 
+    const numberStack = [];
+    const operatorStack = [];
 
+    function applyOperator() {
+        const operator = operatorStack.pop();
+        const right = numberStack.pop();
+        const left = numberStack.pop();
+        switch (operator) {
+            case '+':
+                numberStack.push(left + right);
+                break;
+            case '-':
+                numberStack.push(left - right);
+                break;
+            case '*':
+                numberStack.push(left * right);
+                break;
+            case '/':
+                numberStack.push(left / right);
+                break;
+            case '^':
+                numberStack.push(Math.pow(left, right));
+                break;
+            default:
+                break;
+        }
+    }
 
+    for (let i = 0; i < expression.length; i++) {
+        const char = expression.charAt(i);
 
-// const togSci = document.querySelector('.sci-more');
-// const togSci1 = document.querySelector('.sci-more1');
+        if (char === ' ') {
+            continue; // Skip whitespace
+        }
 
-// const scient = document.querySelector('.scientific-1');
-// const scient1 = document.querySelector('.scientific-2');
+        if (char in precedence) {
+            while (
+                operatorStack.length > 0 &&
+                precedence[char] <= precedence[operatorStack[operatorStack.length - 1]]
+            ) {
+                applyOperator();
+            }
+            operatorStack.push(char);
+        } else if (char === '(') {
+            operatorStack.push(char);
+        } else if (char === ')') {
+            while (operatorStack.length > 0 && operatorStack[operatorStack.length - 1] !== '(') {
+                applyOperator();
+            }
+            operatorStack.pop(); // Pop the '('
+        } else {
+            let num = '';
+            while (i < expression.length && /[0-9.]/.test(expression.charAt(i))) {
+                num += expression.charAt(i);
+                i++;
+            }
+            i--; // Move back one step to avoid skipping the next character.
+            numberStack.push(parseFloat(num));
+        }
+    }
 
+    while (operatorStack.length > 0) {
+        applyOperator();
+    }
 
-// togSci.addEventListener('click', ()=> {
-//     scient.style.display = 'none';
-//     scient1.style.display = 'block';
-// });
+    if (numberStack.length === 1) {
+        return numberStack[0];
+    } else {
+        return "Error";
+    }
+}
 
-// togSci1.addEventListener('click', ()=> {
-//     scient1.style.display = 'none';
-//     scient.style.display = 'block';
-// });
-
-
+// Example usage:
+const userInput = "3 + 4 * (2 - 1)";
+const result = calculateExpression(userInput);
+console.log("Result:", result);
